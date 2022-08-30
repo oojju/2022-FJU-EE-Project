@@ -110,7 +110,7 @@ class snnmodel(nn.Module):
         self.cur3 = self.fc1(self.spk_flat)
         self.spk3, self.mem3 = self.lif3(self.cur3, self.mem3)
         self.cur4 = self.fc2(self.spk3)
-        self.spk4, self.mem4 = self.lif3(self.cur4, self.mem4)
+        self.spk4, self.mem4 = self.lif4(self.cur4, self.mem4)
         
         global test
         if test:
@@ -345,7 +345,7 @@ if __name__ == '__main__':
     main_path = "./snn_event/event_dataset/Action_Recognition_Dataset/"
     train_img_path = main_path + "train/"
     valid_img_path = main_path + "valid/"
-    store_path = "./snn_event/snnpkl_test/" + str(pkl_version) + '/'
+    store_path = "./snn_event/snnpkl_test1/" + str(pkl_version) + '/'
 
     freeze_support()
     mp.set_start_method('spawn', force=True)
@@ -366,10 +366,10 @@ if __name__ == '__main__':
                 break
             else:
                 pkl_version -= 1
-                store_path = "./snn_event/snnpkl_test/" + str(pkl_version) + '/'
+                store_path = "./snn_event/snnpkl_test1/" + str(pkl_version) + '/'
                 break
         pkl_version += 1
-        store_path = "./snn_event/snnpkl_test/" + str(pkl_version) + '/'
+        store_path = "./snn_event/snnpkl_test1/" + str(pkl_version) + '/'
     print("pkl_version: %d" % pkl_version)
     
     datalog += 'use:'+str(device)+'\n'
