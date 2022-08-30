@@ -81,12 +81,11 @@ class custom_Dataset(Dataset):
 class snnmodel(nn.Module):
     def __init__(self, kernel_size, beta, spike_grad):
         super(snnmodel, self).__init__()
-        #32*64
-        self.conv1 = nn.Conv2d(2, 4, kernel_size) #26*58
-        self.maxpool1 = nn.MaxPool2d(2) #13*29
+        self.conv1 = nn.Conv2d(2, 4, kernel_size)
+        self.maxpool1 = nn.MaxPool2d(2)
         self.lif1 = snn.Leaky(beta=beta, spike_grad=spike_grad)
-        self.conv2 = nn.Conv2d(4, 8, kernel_size) #7*23
-        self.maxpool2 = nn.MaxPool2d(2) #3*11
+        self.conv2 = nn.Conv2d(4, 8, kernel_size)
+        self.maxpool2 = nn.MaxPool2d(2)
         self.lif2 = snn.Leaky(beta=beta, spike_grad=spike_grad)
         self.flatten = nn.Flatten()
         self.fc1 = nn.Linear(82*60*8, 512)
